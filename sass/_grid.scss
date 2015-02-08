@@ -1,0 +1,48 @@
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    width: 80%;
+    margin: auto;
+    @include breakpoint(mobile) {
+        width: auto;
+        margin-left: 6px;
+        margin-right: 6px;        
+    }
+    &.first {
+        margin-top: 120px;
+    }
+    &.last {
+        margin-bottom: 120px;
+    }
+    .row {
+        clear: both;
+        margin: 0 -6px;
+        &:after, &:before {
+            content: ' ';
+            display: table;
+            zoom: 1;
+            clear: both;
+            margin-bottom: 6px;
+        }
+    }    
+}
+%grid {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding: 0 6px;
+    margin: 0;
+    float: left;
+}
+@for $i from 1 through 6 {
+    .grid-#{$i} {
+        @extend %grid;
+        width: (100%/6)*$i;
+        @include breakpoint(mobile) {
+            width: 100%;
+            display: block;
+            margin-bottom: 6*2px;
+        }
+    }
+}
